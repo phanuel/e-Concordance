@@ -1,0 +1,217 @@
+/* sticky footer hack */
+
+#wrap {
+    height: auto !important;
+    margin: 0 auto -75px;
+    min-height: 100%;
+}
+
+.push, #footer {
+    height: 60px;
+}
+
+.alert p:last-child {
+    margin-bottom: 2px;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+/* menu */
+div.container a.brand {
+    width: 210px;
+    height: 25px;
+    margin: 8px 25px 0px 5px;
+    padding: 0px;
+    background-image: url("../images/e-concordance_min_210x25.png");
+    background-repeat: no-repeat;
+}
+
+div.menu_hack {
+    height: 20px;
+}
+
+/* home page */
+div.main_logo_desktop {
+    height: 234px;
+    background-image: url("../images/e-concordance_470x234.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+div.main_logo_tablet {
+    height: 200px;
+    background-image: url("../images/e-concordance_400x200.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+div.main_logo_phone {
+    height: 130px;
+    margin-top: 20px;
+    background-image: url("../images/e-concordance_260x130.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+div.pre_day_verse {
+    height: 30px;
+}
+
+div.day_verse {
+    margin: 10px 15px 5px 20px;
+}
+
+div.day_verse p {
+    font-size: 1.1em;
+}
+
+div.day_verse td {
+    height: 120px;
+    vertical-align: middle;
+}
+
+div.main_categories {
+    margin: auto;
+    margin-bottom: 15px;
+    max-width: 500px;
+}
+
+div.main_categories > p {
+    margin-left: 20px;
+}
+
+a.main_categories_logo {
+    display: block;
+    height: 80px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+a.bible_logo {
+    background-image: url("../images/logo_bible.jpg");
+}
+
+a.hetc_logo {
+    background-image: url("../images/logo_hetc.jpg");
+}
+
+a.cpe_logo {
+    background-image: url("../images/logo_cpe.jpg");
+}
+
+/* indexes */
+.index-mode {
+    margin-bottom: 2px;
+    margin-top: 2px;
+    padding-bottom: 6px;
+    padding-top: 5px;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+/* bible index */
+h2.newTestament {
+    margin-top: 20px;
+}
+
+div.newTestament {
+    margin-bottom: 30px;
+}
+
+/* bible read */
+ul.pager {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+div.paginationChaptersNumbers {
+    text-align: center;
+    font-size: 1em;
+    padding: 7px 0px 7px 0px;
+}
+
+div.chapter {
+    margin: 15px 0px 20px 0px;
+}
+
+div.chapterText {
+    margin: 15px 20px 10px 20px;
+}
+
+div.chapterText table {
+    width: 100%;
+}
+
+td.chapterHeader {
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+td.verseNumber {
+    text-align: right;
+    padding-right: 5px;
+    vertical-align: top;
+    white-space: nowrap;
+}
+
+/* bible search */
+div.paginationPagesNumbers {
+    text-align: center;
+    font-size: 1em;
+    margin-top: 4px;
+}
+
+div.searchResults {
+    margin: 15px 0px 20px 0px;
+}
+
+div.searchResultsText {
+    margin: 15px 20px 10px 20px;
+}
+
+td.searchVerseNumber {
+    padding-right: 5px;
+    vertical-align: top;
+    white-space: nowrap;
+}
+
+/* songs read */
+td.songVerseNumber {
+    padding-right: 10px;
+    text-align: right;
+    vertical-align: top;
+    font-weight: bold;
+}
+
+/* songs search */
+td.searchSongNumber {
+    padding-right: 20px;
+    vertical-align: top;
+    text-align: center;
+    font-weight: bold;
+}
+
+td.searchSongNumber h1 {
+    margin: 0px;
+    padding: 0px;
+}
+
+td.songVerseText {
+    padding-top: 8px;
+}
+
+/* contact form */
+table.contact-form {
+    width: 100%;
+}
+table.contact-form tr td:first-child {
+    width: 180px;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 6px;
+    vertical-align: top;
+}

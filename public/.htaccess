@@ -1,0 +1,16 @@
+Options -Indexes
+
+RewriteEngine on
+
+# Sending old urls to the redirection scripts
+RewriteRule ^bible/index.php(.*)$ old_urls_redirect/bible.php$1 [L]
+RewriteRule ^hymnes-et-cantiques/partitions_pdf/(.*)$ old_urls_redirect/hetc.php?partition=$1 [L]
+RewriteRule ^hymnes-et-cantiques/index.php(.*)$ old_urls_redirect/hetc.php$1 [L]
+RewriteRule ^hymnes-et-cantiques/?$ old_urls_redirect/hetc.php [L]
+RewriteRule ^cantiques-enfants/partitions_pdf/(.*)$ old_urls_redirect/cpe.php?partition=$1 [L]
+RewriteRule ^cantiques-enfants/index.php(.*)$ old_urls_redirect/cpe.php$1 [L]
+RewriteRule ^cantiques-enfants/?$ old_urls_redirect/cpe.php [L]
+RewriteRule ^contact.php(.*)$ /e-concordance/index/contact$1 [R=301,L]
+
+RewriteCond $1 !^(index\.php|robots\.txt|sitemap\.txt|google31248bc089f9a773\.html|css|images|js|pdf|old_urls_redirect)
+RewriteRule ^(.*)$ index.php/$1 [L]
