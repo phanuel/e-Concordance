@@ -106,14 +106,21 @@ class Bible extends CI_Controller {
         try {
             $query = (isset($_GET['query'])) ? $_GET['query'] : "";
             $mode = (isset($_GET['mode'])) ? $_GET['mode'] : "and";
-            $case_sensitive = (isset($_GET['cs'])) ? $_GET['cs'] : false;
+            $case_sensitive = (isset($_GET['cs'])) ? $_GET['cs'] == "on" ? true : false : false;
+            $accents_sensitive = (isset($_GET['as'])) ? $_GET['as'] == "on" ? true : false : false;
             $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
             $page = ($page != "") ? $page : 1;
 
             $layoutData['title'] = "Rechercher dans la Bible";
 
+            $data['case_sensitive'] = $case_sensitive;
+            $data['accents_sensitive'] = $accents_sensitive;
             $data['query'] = $query;
             $data['mode'] = $mode;
+
+            $result = $this->bible_verses->query($query, $mode, $case_sensitive, $accents_sensitive, $page);
+            $data['results'] = $result['results'];
+            $data['count'] = $result['count'];
             
             if ($mode == "verb") {
                 $this->load->model('verbs_flections');
@@ -121,10 +128,6 @@ class Bible extends CI_Controller {
                 $words = explode(" ", clean_query_text($query, $case_sensitive));
                 $data['flections'] = $this->verbs_flections->getFlections($words[0]);
             }
-
-            $data['results'] = $this->bible_verses->query($query, $mode, $case_sensitive, $page, false);
-            $data['count'] = $this->bible_verses->query($query, $mode, $case_sensitive, $page, true);
-            //echo $this->db->last_query();
 
             $previous_tags = "";
             $curr_tags = "";
@@ -139,7 +142,8 @@ class Bible extends CI_Controller {
                 $n = $data['count'];
                 $params = Array("query" => $query,
                     "mode" => $mode,
-                    "cs" => $case_sensitive);
+                    "cs" => $case_sensitive == true ? "on" : "",
+                    "as" => $accents_sensitive == true ? "on" : "");
                 $get_params = http_build_query($params);
 
                 $config['base_url'] = base_url() . 'bible/search?' . $get_params;

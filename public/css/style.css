@@ -103,6 +103,10 @@ a.cpe_logo {
     background-image: url("../images/logo_cpe.jpg");
 }
 
+#options {
+    margin-top: 10px;
+}
+
 /* indexes */
 .index-mode {
     margin-bottom: 2px;

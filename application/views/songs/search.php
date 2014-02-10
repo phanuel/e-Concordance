@@ -1,3 +1,5 @@
+<script type="text/javascript" src="<?php echo base_url(); ?>js/songsSearch.js"></script>
+
 <h1><?php echo $hymn_book_name; ?> - Recherche</h1>
 <?php echo $indexes_menu; ?>
 <form class="form-horizontal">
@@ -7,12 +9,15 @@
     </div>
     <div class="visible-phone"><br /></div>
     <select name="mode">
-        <option value="and" <?php echo ($mode == "and") ? "selected='selected'" : ""; ?>>tous les mots (ET)</option>
-        <option value="or" <?php echo ($mode == "or") ? "selected='selected'" : ""; ?>>un ou plusieurs mot(s) (OU)</option>
-        <option value="literal" <?php echo ($mode == "literal") ? "selected='selected'" : ""; ?>>phrase exacte</option>
-        <option value="wildcard" <?php echo ($mode == "wildcard") ? "selected='selected'" : ""; ?>>mot / phrase commençant par...</option>
+        <option value="and" <?php echo ($mode == "and") ? "selected='selected'" : ""; ?>>par mots (ordre indifférent)</option>
+        <option value="literal" <?php echo ($mode == "literal") ? "selected='selected'" : ""; ?>>chaîne de caractères</option>
         <option value="verb" <?php echo ($mode == "verb") ? "selected='selected'" : ""; ?>>formes conjuguées du verbe</option>
     </select>
+    <span style="margin-left:8px;"><a href="" id="optionsLink">Options</a></span>
+    <div id="options" <?php echo ($case_sensitive == true || $accents_sensitive == true) ? "" : "style='display:none;'"; ?>>
+        <label><input type="checkbox" name="cs" <?php echo $case_sensitive == true ? "checked='checked'" : ""; ?> /> sensible à la casse</label>
+        <label><input type="checkbox" name="as" <?php echo $accents_sensitive == true ? "checked='checked'" : ""; ?> /> sensible à l'accentuation</label>
+    </div>
 </form>
 
 <?php if (isset($exception)): ?>
@@ -35,7 +40,7 @@
     <?php endif; ?>
 
     <?php
-    if ($results != null) {
+    if ($count != null) {
         $n = $count;
 
         if ($n == 0) {
@@ -50,6 +55,8 @@
 
         if ($mode == "verb") {
             $resultText .= " <small>(formes conjuguées du verbe)</small>";
+        }elseif ($mode == "literal") {
+            $resultText .= " <small>(chaîne de caractères)</small>";
         }
     }
 
@@ -58,14 +65,14 @@
     }
     ?>
 
-    <?php if ($results != null): ?>
+    <?php if ($count != null): ?>
         <div class="row">
             <div class="span12">
                 <div class="searchResults thumbnail">
                     <div class="searchResultsText">
                         <h2 title="Résultats de la recherche"><?php echo $resultText ?></h2>
                         <table>
-                            <?php foreach ($results->result() as $result): ?>
+                            <?php foreach ($results as $result): ?>
                                 <?php
                                 $url = base_url() . "songs/read/" . $hymn_book_identifier . "/" . $result->song_number . "/" . $result->verse;
                                 
@@ -85,6 +92,7 @@
                                     <td class="songVerseText">
                                         <?php
                                             $string = $result->text;
+                                            $highlighted = '<span style="background-color:#D9EDF7;">$0</span>';
                                             
                                             // highlighting words corresponding to the query entered by the user
                                             if (isset($flections)) {
@@ -92,9 +100,13 @@
                                                     $array[] = $flection->stem.$flection->ending;
                                                 }
                                                 
-                                                $string = preg_replace('~('.implode('|', $array).'[a-zA-Z]{0,45})(?![^<]*[>])~is', '<span style="background-color:#D9EDF7;">$0</span>', $string);
+                                                $string = preg_replace('~('.implode('|', $array).'[a-zA-Z]{0,45})(?![^<]*[>])~is', $highlighted, $string);
                                             }else {
-                                                $string = preg_replace('~('.$query.'[a-zA-Z]{0,45})(?![^<]*[>])~is', '<span style="background-color:#D9EDF7;">$0</span>', $string);
+                                                if ($case_sensitive == true) {
+                                                    $string = preg_replace('~('.$query.'[a-zA-Z]{0,45})(?![^<]*[>])~s', $highlighted, $string);
+                                                }else {
+                                                    $string = preg_replace('~('.$query.'[a-zA-Z]{0,45})(?![^<]*[>])~is', $highlighted, $string);
+                                                }
                                             }
                                         ?>
                                         
