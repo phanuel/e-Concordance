@@ -4,11 +4,6 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>js/utilities.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/songsRead.js"></script>
 
-<h1><?php echo $hymn_book_name; ?> - n°<?php echo $song_number; ?></h1>
-<?php echo $indexes_menu; ?>
-<?php if (isset($pagination)) {echo $pagination;} ?>
-<br />
-    
 <?php if (isset($exception)): ?>
     <div class="row">
         <div class="span12">
@@ -18,6 +13,10 @@
         </div>
     </div>
 <?php else: ?>
+    <h1><?php echo $hymn_book_name; ?> - n°<?php echo $song_number; ?></h1>
+    <?php echo $indexes_menu; ?>
+    <?php if (isset($pagination)) {echo $pagination;} ?>
+    <br />
     <div class="row">
         <div class="span8">
             <table>

@@ -7,10 +7,16 @@ class Hymn_books extends CI_Model {
     }
     
     public function getHymnBook($hymn_book_identifier) {
+        $this->load->library("exceptions/HymnBookNotFoundException");
+        
         $this->db->from('hymn_books');
         $this->db->where('identifier', $hymn_book_identifier);
         
         $result = $this->db->get()->result();
+        
+        if (count($result) == 0) {
+            throw new HymnBookNotFoundException("Ce recueil n'existe pas.");
+        }
         
         return $result;
     }

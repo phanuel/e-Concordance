@@ -17,17 +17,22 @@ class Songs extends CI_Controller {
         }else {
             $this->output->cache(10080); // in prod: enabling caching, with a duration of one week (10080 minutes)
         }
-        $hymn_book = $this->hymn_books->getHymnBook($hymn_book_identifier);
-        $layoutData['title'] = $hymn_book[0]->name;
+        try {
+            $hymn_book = $this->hymn_books->getHymnBook($hymn_book_identifier);
+            $layoutData['title'] = $hymn_book[0]->name;
 
-        $data['hymn_book_identifier'] = $hymn_book_identifier;
-        $data['hymn_book_name'] = $hymn_book[0]->name;
-        $data['letter'] = $letter;
-        $data['verses_data'] = $this->hymn_books->getHymnBookIndex($hymn_book[0]->name, $letter, "FR");
-        $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
+            $data['hymn_book_identifier'] = $hymn_book_identifier;
+            $data['hymn_book_name'] = $hymn_book[0]->name;
+            $data['letter'] = $letter;
+            $data['verses_data'] = $this->hymn_books->getHymnBookIndex($hymn_book[0]->name, $letter, "FR");
+            $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
 
-        if ($letter == "a") { // if letter is "a", creating canonical link in head (avoids duplicate content)
-            $layoutData['canonicalUrl'] = "songs/index/" . $hymn_book_identifier;
+            if ($letter == "a") { // if letter is "a", creating canonical link in head (avoids duplicate content)
+                $layoutData['canonicalUrl'] = "songs/index/" . $hymn_book_identifier;
+            }
+        } catch (Exception $e) {
+            $data['exception'] = $e;
+            $layoutData['title'] = "Erreur";
         }
         $layoutData['content'] = $this->load->view('songs/index', $data, true);
 
@@ -40,17 +45,22 @@ class Songs extends CI_Controller {
         }else {
             $this->output->cache(10080); // in prod: enabling caching, with a duration of one week (10080 minutes)
         }
-        $hymn_book = $this->hymn_books->getHymnBook($hymn_book_identifier);
-        $data['hymn_book_identifier'] = $hymn_book_identifier;
-        $data['hymn_book_name'] = $hymn_book[0]->name;
-        $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
+        try {
+            $hymn_book = $this->hymn_books->getHymnBook($hymn_book_identifier);
+            $data['hymn_book_identifier'] = $hymn_book_identifier;
+            $data['hymn_book_name'] = $hymn_book[0]->name;
+            $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
 
-        $layoutData['title'] = $hymn_book[0]->name . " - auteurs des paroles";
-        $data['title'] = $layoutData['title'];
-        $data['authors_data'] = $this->hymn_books->getHymnBookLyricsAuthors($hymn_book_identifier);
+            $layoutData['title'] = $hymn_book[0]->name . " - auteurs des paroles";
+            $data['title'] = $layoutData['title'];
+            $data['authors_data'] = $this->hymn_books->getHymnBookLyricsAuthors($hymn_book_identifier);
 
-        if (isset($author_id)) { // if author id is specified, creating canonical link in head (avoids duplicate content)
-            $layoutData['canonicalUrl'] = "songs/index_authors_lyrics/" . $hymn_book_identifier;
+            if (isset($author_id)) { // if author id is specified, creating canonical link in head (avoids duplicate content)
+                $layoutData['canonicalUrl'] = "songs/index_authors_lyrics/" . $hymn_book_identifier;
+            }
+        } catch (Exception $e) {
+            $data['exception'] = $e;
+            $layoutData['title'] = "Erreur";
         }
         $layoutData['content'] = $this->load->view('songs/index-authors', $data, true);
 
@@ -63,17 +73,22 @@ class Songs extends CI_Controller {
         }else {
             $this->output->cache(10080); // in prod: enabling caching, with a duration of one week (10080 minutes)
         }
-        $hymn_book = $this->hymn_books->getHymnBook($hymn_book_identifier);
-        $data['hymn_book_identifier'] = $hymn_book_identifier;
-        $data['hymn_book_name'] = $hymn_book[0]->name;
-        $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
-        
-        $layoutData['title'] = $hymn_book[0]->name . " - auteurs des mélodies";
-        $data['title'] = $layoutData['title'];
-        $data['authors_data'] = $this->hymn_books->getHymnBookMelodiesAuthors($hymn_book_identifier);
+        try {
+            $hymn_book = $this->hymn_books->getHymnBook($hymn_book_identifier);
+            $data['hymn_book_identifier'] = $hymn_book_identifier;
+            $data['hymn_book_name'] = $hymn_book[0]->name;
+            $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
 
-        if (isset($author_id)) { // if author id is specified, creating canonical link in head (avoids duplicate content)
-            $layoutData['canonicalUrl'] = "songs/index_authors_melodies/" . $hymn_book_identifier;
+            $layoutData['title'] = $hymn_book[0]->name . " - auteurs des mélodies";
+            $data['title'] = $layoutData['title'];
+            $data['authors_data'] = $this->hymn_books->getHymnBookMelodiesAuthors($hymn_book_identifier);
+
+            if (isset($author_id)) { // if author id is specified, creating canonical link in head (avoids duplicate content)
+                $layoutData['canonicalUrl'] = "songs/index_authors_melodies/" . $hymn_book_identifier;
+            }
+        } catch (Exception $e) {
+            $data['exception'] = $e;
+            $layoutData['title'] = "Erreur";
         }
         $layoutData['content'] = $this->load->view('songs/index-authors', $data, true);
 
@@ -86,26 +101,31 @@ class Songs extends CI_Controller {
         }else {
             $this->output->cache(10080); // in prod: enabling caching, with a duration of one week (10080 minutes)
         }
-        $hymn_book = $this->hymn_books->getHymnBook($hymn_book_identifier);
-        $data['hymn_book_identifier'] = $hymn_book_identifier;
-        $data['hymn_book_name'] = $hymn_book[0]->name;
-        $data['digits'] = $digits;
-        $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
+        try {
+            $hymn_book = $this->hymn_books->getHymnBook($hymn_book_identifier);
+            $data['hymn_book_identifier'] = $hymn_book_identifier;
+            $data['hymn_book_name'] = $hymn_book[0]->name;
+            $data['digits'] = $digits;
+            $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
 
-        $layoutData['title'] = $hymn_book[0]->name . " - mètres";
+            $layoutData['title'] = $hymn_book[0]->name . " - mètres";
 
-        $data['meters_data'] = $this->hymn_books->getHymnBookMetersIndex($hymn_book_identifier, $digits);
+            $data['meters_data'] = $this->hymn_books->getHymnBookMetersIndex($hymn_book_identifier, $digits);
 
-        if (isset($meter_id)) { // if meter id is specified, creating canonical link in head (avoids duplicate content)
-            if ($digits == 4) {
-                $layoutData['canonicalUrl'] = "songs/index_meters/" . $hymn_book_identifier;
+            if (isset($meter_id)) { // if meter id is specified, creating canonical link in head (avoids duplicate content)
+                if ($digits == 4) {
+                    $layoutData['canonicalUrl'] = "songs/index_meters/" . $hymn_book_identifier;
+                }else {
+                    $layoutData['canonicalUrl'] = "songs/index_meters/" . $hymn_book_identifier . "/" . $digits;
+                }
             }else {
-                $layoutData['canonicalUrl'] = "songs/index_meters/" . $hymn_book_identifier . "/" . $digits;
+                if ($digits == 4) {
+                    $layoutData['canonicalUrl'] = "songs/index_meters/" . $hymn_book_identifier;
+                }
             }
-        }else {
-            if ($digits == 4) {
-                $layoutData['canonicalUrl'] = "songs/index_meters/" . $hymn_book_identifier;
-            }
+        } catch (Exception $e) {
+            $data['exception'] = $e;
+            $layoutData['title'] = "Erreur";
         }
         $layoutData['content'] = $this->load->view('songs/index-meters', $data, true);
 
@@ -118,26 +138,31 @@ class Songs extends CI_Controller {
         }else {
             $this->output->cache(10080); // in prod: enabling caching, with a duration of one week (10080 minutes)
         }
-        $hymn_book = $this->hymn_books->getHymnBook($hymn_book_identifier);
-        $data['hymn_book_identifier'] = $hymn_book_identifier;
-        $data['hymn_book_name'] = $hymn_book[0]->name;
-        $data['letter'] = $letter;
-        $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
+        try {
+            $hymn_book = $this->hymn_books->getHymnBook($hymn_book_identifier);
+            $data['hymn_book_identifier'] = $hymn_book_identifier;
+            $data['hymn_book_name'] = $hymn_book[0]->name;
+            $data['letter'] = $letter;
+            $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
 
-        $layoutData['title'] = $hymn_book[0]->name . " - mélodies";
+            $layoutData['title'] = $hymn_book[0]->name . " - mélodies";
 
-        $data['melodies_data'] = $this->hymn_books->getHymnBookMelodiesIndex($hymn_book_identifier, $letter);
+            $data['melodies_data'] = $this->hymn_books->getHymnBookMelodiesIndex($hymn_book_identifier, $letter);
 
-        if (isset($melody_id)) { // if melody id is specified, creating canonical link in head (avoids duplicate content)
-            if ($letter == "a") {
-                $layoutData['canonicalUrl'] = "songs/index_melodies/" . $hymn_book_identifier;
+            if (isset($melody_id)) { // if melody id is specified, creating canonical link in head (avoids duplicate content)
+                if ($letter == "a") {
+                    $layoutData['canonicalUrl'] = "songs/index_melodies/" . $hymn_book_identifier;
+                }else {
+                    $layoutData['canonicalUrl'] = "songs/index_melodies/" . $hymn_book_identifier . "/" . $letter;
+                }
             }else {
-                $layoutData['canonicalUrl'] = "songs/index_melodies/" . $hymn_book_identifier . "/" . $letter;
+                if ($letter == "a") {
+                    $layoutData['canonicalUrl'] = "songs/index_melodies/" . $hymn_book_identifier;
+                }
             }
-        }else {
-            if ($letter == "a") {
-                $layoutData['canonicalUrl'] = "songs/index_melodies/" . $hymn_book_identifier;
-            }
+        } catch (Exception $e) {
+            $data['exception'] = $e;
+            $layoutData['title'] = "Erreur";
         }
         $layoutData['content'] = $this->load->view('songs/index-melodies', $data, true);
 
@@ -304,6 +329,9 @@ class Songs extends CI_Controller {
 
                 $data["pagination"] = $this->pagination->create_links();
             }
+        } catch (HymnBookNotFoundException $e) {
+            $data['hymnBookNotFoundException'] = $e;
+            $layoutData['title'] = "Erreur";
         } catch (Exception $e) {
             $data['exception'] = $e;
             $layoutData['title'] = "Erreur";
