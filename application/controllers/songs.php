@@ -160,9 +160,15 @@ class Songs extends CI_Controller {
             $data['song'] = $this->songs_table->getSongInfos($hymn_book[0]->name, $song_number);
             $data['song_verses'] = $this->song_verses->getSong($hymn_book[0]->name, $song_number);
             
-            // keeping only the first line of the first verse
-            $pos = strpos($data['song_verses'][0]->text, "\r\n");
-            $title = substr($data['song_verses'][0]->text, 0, $pos);
+            // getting text of the first verse and not the refrain
+            if ($data['song_verses'][0]->verse == 0) {
+                $first_verse_text = $data['song_verses'][1]->text;
+            }else {
+                $first_verse_text = $data['song_verses'][0]->text;
+            }
+            // keeping only the first line of the text to show it in page title
+            $pos = strpos($first_verse_text, "\r\n");
+            $title = substr($first_verse_text, 0, $pos);
 
             $layoutData['title'] = $title." ...";
 
