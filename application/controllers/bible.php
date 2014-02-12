@@ -16,12 +16,16 @@ class Bible extends CI_Controller {
         }else {
             $this->output->cache(10080); // in prod: enabling caching, with a duration of one week (10080 minutes)
         }
-        $layoutData['title'] = "La Bible";
+        try {
+            $layoutData['title'] = "La Bible";
 
-        $data['books_nt'] = $this->bible_books->getTestamentBooks(true);
-        $data['books_at'] = $this->bible_books->getTestamentBooks(false);
-        $data['indexes_menu'] = $this->load->view('bible/indexes-menu', null, true);
-
+            $data['indexes_menu'] = $this->load->view('bible/indexes-menu', null, true);
+            $data['books_nt'] = $this->bible_books->getTestamentBooks(true);
+            $data['books_at'] = $this->bible_books->getTestamentBooks(false);
+        } catch (Exception $e) {
+            $data['exception'] = $e;
+            $layoutData['title'] = "Erreur";
+        }
         $layoutData['content'] = $this->load->view('bible/index', $data, true);
 
         $this->load->view('layouts/layout', $layoutData);
@@ -37,7 +41,6 @@ class Bible extends CI_Controller {
             $data['book'] = $this->bible_books->getBibleBook($book_identifier);
             $data['chapter'] = $chapter;
             $data['verses'] = $this->bible_verses->getChapter($data['book']->bible_book_id, $chapter);
-            $data['indexes_menu'] = $this->load->view('bible/indexes-menu', null, true);
 
             $layoutData['title'] = $data['book']->name . " " . $chapter;
 
@@ -78,6 +81,9 @@ class Bible extends CI_Controller {
             $this->pagination->initialize($config);
 
             $data["pagination"] = $this->pagination->create_links();
+        } catch (BibleBookNotFoundException $e) {
+            $data['bibleBookNotFoundException'] = $e;
+            $layoutData['title'] = "Erreur";
         } catch (Exception $e) {
             $data['exception'] = $e;
             $layoutData['title'] = "Erreur";
@@ -94,6 +100,7 @@ class Bible extends CI_Controller {
                 $layoutData['canonicalUrl'] = "bible/read";
             }
         }
+        $data['indexes_menu'] = $this->load->view('bible/indexes-menu', null, true);
         $layoutData['content'] = $this->load->view('bible/read', $data, true);
 
         $this->load->view('layouts/layout', $layoutData);

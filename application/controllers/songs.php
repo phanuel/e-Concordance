@@ -23,9 +23,9 @@ class Songs extends CI_Controller {
 
             $data['hymn_book_identifier'] = $hymn_book_identifier;
             $data['hymn_book_name'] = $hymn_book[0]->name;
+            $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
             $data['letter'] = $letter;
             $data['verses_data'] = $this->hymn_books->getHymnBookIndex($hymn_book[0]->name, $letter, "FR");
-            $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
 
             if ($letter == "a") { // if letter is "a", creating canonical link in head (avoids duplicate content)
                 $layoutData['canonicalUrl'] = "songs/index/" . $hymn_book_identifier;
@@ -105,9 +105,9 @@ class Songs extends CI_Controller {
             $hymn_book = $this->hymn_books->getHymnBook($hymn_book_identifier);
             $data['hymn_book_identifier'] = $hymn_book_identifier;
             $data['hymn_book_name'] = $hymn_book[0]->name;
-            $data['digits'] = $digits;
             $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
-
+            $data['digits'] = $digits;
+            
             $layoutData['title'] = $hymn_book[0]->name . " - mètres";
 
             $data['meters_data'] = $this->hymn_books->getHymnBookMetersIndex($hymn_book_identifier, $digits);
@@ -142,8 +142,8 @@ class Songs extends CI_Controller {
             $hymn_book = $this->hymn_books->getHymnBook($hymn_book_identifier);
             $data['hymn_book_identifier'] = $hymn_book_identifier;
             $data['hymn_book_name'] = $hymn_book[0]->name;
-            $data['letter'] = $letter;
             $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
+            $data['letter'] = $letter;
 
             $layoutData['title'] = $hymn_book[0]->name . " - mélodies";
 
@@ -180,8 +180,8 @@ class Songs extends CI_Controller {
 
             $data['hymn_book_identifier'] = $hymn_book_identifier;
             $data['hymn_book_name'] = $hymn_book[0]->name;
-            $data['song_number'] = $song_number;
             $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
+            $data['song_number'] = $song_number;
             $data['song'] = $this->songs_table->getSongInfos($hymn_book[0]->name, $song_number);
             $data['song_verses'] = $this->song_verses->getSong($hymn_book[0]->name, $song_number);
             
@@ -270,11 +270,11 @@ class Songs extends CI_Controller {
 
             $data['hymn_book_identifier'] = $hymn_book_identifier;
             $data['hymn_book_name'] = $hymn_book[0]->name;
+            $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
             $data['case_sensitive'] = $case_sensitive;
             $data['accents_sensitive'] = $accents_sensitive;
             $data['query'] = $query;
             $data['mode'] = $mode;
-            $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
 
             $result = $this->song_verses->query($hymn_book[0]->name, $query, $mode, $case_sensitive, $accents_sensitive, $page);
             $data['results'] = $result['results'];

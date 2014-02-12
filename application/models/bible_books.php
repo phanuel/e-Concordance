@@ -12,10 +12,12 @@ class Bible_books extends CI_Model {
     }
 
     public function getBibleBook($book_identifier) {
+        $this->load->library("exceptions/BibleBookNotFoundException");
+        
         $query = $this->db->get_where('bible_books_v', array('identifier' => $book_identifier));
 
         if ($query->num_rows() == 0) {
-            throw new Exception("Book not found");
+            throw new BibleBookNotFoundException("Ce livre n'existe pas");
         }
         
         return $query->row();
