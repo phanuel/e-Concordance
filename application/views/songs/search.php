@@ -9,7 +9,7 @@
         </div>
     </div>
 <?php else: ?>
-    <h1><?php echo $hymn_book_name; ?> - Recherche</h1>
+    <h1><?php echo $hymn_book_name; ?> - recherche</h1>
     <?php echo $indexes_menu; ?>
     <form class="form-horizontal">
         <div class="input-append">
@@ -119,7 +119,7 @@
                                                 }
                                             ?>
 
-                                            <?php echo nl2br($string); ?><br /><br />
+                                            <?php echo nl2br($string); ?><br />
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

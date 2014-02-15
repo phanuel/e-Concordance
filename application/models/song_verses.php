@@ -6,6 +6,29 @@ class Song_verses extends CI_Model {
         $this->load->database();
     }
     
+    public function getSongs($hymn_book_name, $language = "FR") {
+        $sql = "SELECT * "
+              ."FROM song_verses_v "
+              ."WHERE "
+                ."hymn_book_name = ? "
+                ."AND language_abbreviation = ? "
+              ."ORDER BY "
+                ."song_number, "
+                ."CASE "
+                    ."WHEN verse = 0 THEN 1.5 " // place refrain between first and second verse
+                    ."ELSE verse "
+                ."END";
+
+        $params = Array($hymn_book_name, $language);
+        $results = $this->db->query($sql, $params)->result();
+
+        if (count($results) == 0) {
+            throw new Exception("Aucun cantique trouvé.");
+        }
+
+        return $results;
+    }
+    
     public function getSong($hymn_book_name, $song_number, $language = "FR") {
         $sql = "SELECT * "
               ."FROM song_verses_v "

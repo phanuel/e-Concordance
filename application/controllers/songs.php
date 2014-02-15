@@ -246,6 +246,30 @@ class Songs extends CI_Controller {
         $this->load->view('layouts/layout', $layoutData);
     }
     
+    public function readAll($hymn_book_identifier, $song_number = 1, $verse_number = null) {
+        if (ENVIRONMENT == 'development') {
+            $this->output->enable_profiler(TRUE); // in dev: enabling profiling
+        }else {
+            $this->output->cache(10080); // in prod: enabling caching, with a duration of one week (10080 minutes)
+        }
+        try {
+            $hymn_book = $this->hymn_books->getHymnBook($hymn_book_identifier);
+            $layoutData['title'] = $hymn_book[0]->name;
+
+            $data['hymn_book_identifier'] = $hymn_book_identifier;
+            $data['hymn_book_name'] = $hymn_book[0]->name;
+            $data['indexes_menu'] = $this->load->view('songs/indexes-menu', $data, true);
+            $data['songs_verses'] = $this->song_verses->getSongs($hymn_book[0]->name);
+        } catch (Exception $e) {
+            $data['exception'] = $e;
+            $layoutData['title'] = "Erreur";
+        }
+
+        $layoutData['content'] = $this->load->view('songs/readAll', $data, true);
+
+        $this->load->view('layouts/layout', $layoutData);
+    }
+    
     public function search($hymn_book_identifier) {
         if (ENVIRONMENT == 'development') {
             $this->output->enable_profiler(TRUE); // in dev: enabling profiling

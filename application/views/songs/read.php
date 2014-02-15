@@ -33,14 +33,16 @@
                                 echo $verset.": ";
                             ?>
                         </td>
-                        <td>
-                            <?php echo nl2br($verse_data->text); ?><br /><br />
+                        <td class="songVerseText">
+                            <?php echo nl2br($verse_data->text); ?><br />
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </table>
+            <br /><br />
         </div>
         <div class="span4">
+            <br />
             <?php if ($song[0]->pdf_file != null): ?>
             <div class="well">
                 <?php $pdf_link = base_url() . 'pdf/'.$song[0]->pdf_file; ?>
@@ -136,6 +138,7 @@
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
+            <br />
         </div>
     </div>
 <?php endif; ?>

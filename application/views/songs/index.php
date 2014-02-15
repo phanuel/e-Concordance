@@ -7,7 +7,7 @@
         </div>
     </div>
 <?php else: ?>
-    <h1><?php echo $hymn_book_name; ?></h1>
+    <h1><?php echo $hymn_book_name; ?> - index</h1>
     <?php echo $indexes_menu; ?>
     <div class="row">
         <div class="span12">

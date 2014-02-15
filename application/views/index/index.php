@@ -61,7 +61,7 @@
                     </p>
                 </td>
                 <td width="200px">
-                    <a class="main_categories_logo hetc_logo" href="<?php echo base_url(); ?>songs/index/hymnes-et-cantiques"></a>
+                    <a class="main_categories_logo hetc_logo" href="<?php echo base_url(); ?>songs/readall/hymnes-et-cantiques"></a>
                 </td>
             </tr>
         </table>
@@ -82,7 +82,7 @@
                     </p>
                 </td>
                 <td width="200px">
-                    <a class="main_categories_logo cpe_logo" href="<?php echo base_url(); ?>songs/index/cantiques-pour-les-enfants"></a>
+                    <a class="main_categories_logo cpe_logo" href="<?php echo base_url(); ?>songs/readall/cantiques-pour-les-enfants"></a>
                 </td>
             </tr>
         </table>
