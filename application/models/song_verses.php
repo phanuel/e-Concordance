@@ -30,6 +30,8 @@ class Song_verses extends CI_Model {
     }
     
     public function getSong($hymn_book_name, $song_number, $language = "FR") {
+        $this->load->library("exceptions/SongNotFoundException");
+        
         $sql = "SELECT * "
               ."FROM song_verses_v "
               ."WHERE "
@@ -46,7 +48,7 @@ class Song_verses extends CI_Model {
         $results = $this->db->query($sql, $params)->result();
 
         if (count($results) == 0) {
-            throw new Exception("Ce cantique n'existe pas.");
+            throw new SongNotFoundException("Ce cantique n'existe pas.");
         }
 
         return $results;

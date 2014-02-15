@@ -225,6 +225,9 @@ class Songs extends CI_Controller {
             $this->pagination->initialize($config);
 
             $data["pagination"] = $this->pagination->create_links();
+        } catch (SongNotFoundException $e) {
+            $data['songNotFoundException'] = $e;
+            $layoutData['title'] = "Erreur";
         } catch (Exception $e) {
             $data['exception'] = $e;
             $layoutData['title'] = "Erreur";
