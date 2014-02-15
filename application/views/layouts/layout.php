@@ -10,7 +10,7 @@
         <link href="<?php echo base_url(); ?>css/lib/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" >
         <link href="<?php echo base_url(); ?>css/lib/bootstrap-responsive.min.css" media="screen" rel="stylesheet" type="text/css" >
         <link href="<?php echo base_url(); ?>css/base.css" media="screen" rel="stylesheet" type="text/css" >
-        <link href="<?php echo base_url(); ?>images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" >
+        <link href="<?php echo base_url(); ?>favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" >
 
         <script type="text/javascript" src="<?php echo base_url(); ?>js/stats.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/lib/jquery-1.10.2.min.js"></script>

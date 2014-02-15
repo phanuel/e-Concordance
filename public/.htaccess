@@ -12,5 +12,5 @@ RewriteRule ^cantiques-enfants/index.php(.*)$ old_urls_redirect/cpe.php$1 [L]
 RewriteRule ^cantiques-enfants/?$ old_urls_redirect/cpe.php [L]
 RewriteRule ^contact.php(.*)$ /e-concordance/index/contact$1 [R=301,L]
 
-RewriteCond $1 !^(index\.php|robots\.txt|sitemap\.txt|google31248bc089f9a773\.html|css|images|js|pdf|old_urls_redirect)
+RewriteCond $1 !^(index\.php|robots\.txt|sitemap\.txt|favicon\.ico|google31248bc089f9a773\.html|css|images|js|pdf|old_urls_redirect)
 RewriteRule ^(.*)$ index.php/$1 [L]
