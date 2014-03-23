@@ -23,7 +23,6 @@ class Index extends CI_Controller {
         if (ENVIRONMENT == 'development') {
             $this->output->enable_profiler(TRUE); // in dev: enabling profiling
         }
-        $sendEmailTo = "webmaster@e-concordance.org";
         $subject = "[e-Concordance] Message d'un internaute";
                 
         $data['title'] = "Contact";
@@ -45,17 +44,17 @@ class Index extends CI_Controller {
             $data['success'] = false;
         }else {
             $config = Array( 
-                'protocol' => 'smtp',
-                'smtp_host' => 'mail.e-concordance.org',
-                'smtp_port' => 2626,
-                'smtp_user' => 'webmaster@e-concordance.org',
-                'smtp_pass' => 'cosworth220',
-                'newline' => '\r\n'
+                'protocol' => $this->config->item('contact-email-protocol'),
+                'smtp_host' => $this->config->item('contact-smtp-host'),
+                'smtp_port' => $this->config->item('contact-smtp-port'),
+                'smtp_user' => $this->config->item('contact-smtp-user'),
+                'smtp_pass' => $this->config->item('contact-smtp-pass'),
+                'newline' => $this->config->item('contact-newline')
             );
             $this->load->library('email');
             $this->email->initialize($config);
             $this->email->from($this->input->post('email'), $this->input->post('name'));
-            $this->email->to($sendEmailTo);
+            $this->email->to($this->config->item('contact-email-address'));
             $this->email->subject($subject);
             $this->email->message($this->input->post('message'));
             $this->email->send();
