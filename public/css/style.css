@@ -169,6 +169,16 @@ div.paginationPagesNumbers {
     margin-top: 4px;
 }
 
+div.searchHelp {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+div.searchHelp > ul > li {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
 div.searchResults {
     margin: 15px 0px 20px 0px;
 }
