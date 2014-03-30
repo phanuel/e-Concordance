@@ -72,14 +72,20 @@ div.day_verse td {
     vertical-align: middle;
 }
 
-div.main_categories {
-    margin: auto;
-    margin-bottom: 15px;
-    max-width: 500px;
+div.main-category {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #EEEEEE;
 }
 
-div.main_categories > p {
-    margin-left: 20px;
+div.main-category:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 768px) {
+    div.main-category p {
+        text-align: center;
+    }
 }
 
 a.main_categories_logo {
