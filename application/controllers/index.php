@@ -19,6 +19,21 @@ class Index extends CI_Controller {
         $this->load->view('layouts/layout', $data);
     }
     
+    public function news() {
+        if (ENVIRONMENT == 'development') {
+            $this->output->enable_profiler(TRUE); // in dev: enabling profiling
+        }else {
+            $this->output->cache(1440); // in prod: enabling caching, with a duration of one day (1440 minutes)
+        }
+
+        $this->load->model('news');
+        $data['news'] = $this->news->getAllNews();
+        $data['title'] = "Nouveautés";
+        $data['content'] = $this->load->view('index/news', $data, true);
+        
+        $this->load->view('layouts/layout', $data);
+    }
+    
     public function contact() {
         if (ENVIRONMENT == 'development') {
             $this->output->enable_profiler(TRUE); // in dev: enabling profiling

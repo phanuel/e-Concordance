@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" >
 
         <?php echo isset($canonicalUrl) ? "<link rel='canonical' href='".base_url().$canonicalUrl."'>\n" : ""; ?>
-        <link href="<?php echo base_url(); ?>css/style.css" media="screen" rel="stylesheet" type="text/css" >
         <link href="<?php echo base_url(); ?>css/lib/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" >
         <link href="<?php echo base_url(); ?>css/lib/bootstrap-responsive.min.css" media="screen" rel="stylesheet" type="text/css" >
         <link href="<?php echo base_url(); ?>css/base.css" media="screen" rel="stylesheet" type="text/css" >
+        <link href="<?php echo base_url(); ?>css/style.css" media="screen" rel="stylesheet" type="text/css" >
         <link href="<?php echo base_url(); ?>favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" >
 
         <script type="text/javascript" src="<?php echo base_url(); ?>js/stats.js"></script>
@@ -33,6 +33,7 @@
                                 <ul class="nav">
                                     <div class="menu_hack hidden-desktop"></div>
                                     <li class="active"><a href="<?php echo base_url(); ?>">Accueil</a></li>
+                                    <li class="active"><a href="<?php echo base_url(); ?>index/news">Nouveautés</a></li>
                                     <li class="active"><a href="<?php echo base_url(); ?>index/contact">Contact</a></li>
                                 </ul>
                             </div>

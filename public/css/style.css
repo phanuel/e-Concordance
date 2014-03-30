@@ -251,3 +251,22 @@ table.contact-form tr td:first-child {
     padding-top: 6px;
     vertical-align: top;
 }
+
+/* news */
+div.news {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #EEEEEE;
+}
+
+div.news:last-child {
+    border-bottom: none;
+}
+
+div.news .label {
+    margin-bottom: 10px;
+}
+
+p.news-content li {
+    line-height: 10px;
+}
