@@ -26,7 +26,7 @@
 
 <div class="row main-category">
     <div class="span4 offset2">
-        <a class="main_categories_logo bible_logo" href="<?php echo base_url(); ?>bible"></a>
+        <a class="main-category-logo bible_logo" href="<?php echo base_url(); ?>bible"></a>
     </div>
     <div class="span4">
         <br />
@@ -41,7 +41,7 @@
 </div>
 <div class="row main-category">
     <div class="span4 offset2">
-        <a class="main_categories_logo hetc_logo" href="<?php echo base_url(); ?>songs/readall/hymnes-et-cantiques"></a>
+        <a class="main-category-logo hetc_logo" href="<?php echo base_url(); ?>songs/readall/hymnes-et-cantiques"></a>
     </div>
     <div class="span4">
         <br />
@@ -56,7 +56,7 @@
 </div>
 <div class="row main-category">
     <div class="span4 offset2">
-        <a class="main_categories_logo cpe_logo" href="<?php echo base_url(); ?>songs/readall/cantiques-pour-les-enfants"></a>
+        <a class="main-category-logo cpe_logo" href="<?php echo base_url(); ?>songs/readall/cantiques-pour-les-enfants"></a>
     </div>
     <div class="span4">
         <br />

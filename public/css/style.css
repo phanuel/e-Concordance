@@ -24,7 +24,8 @@ div.container a.brand {
     height: 25px;
     margin: 8px 25px 0px 5px;
     padding: 0px;
-    background-image: url("../images/e-concordance_min_210x25.png");
+    background-image: url("../images/e-concordance_min_634x75.png");
+    background-size: 210px 25px;
     background-repeat: no-repeat;
 }
 
@@ -92,7 +93,7 @@ div.main-category:last-child {
     }
 }
 
-a.main_categories_logo {
+a.main-category-logo {
     display: block;
     height: 80px;
     margin-top: 20px;
@@ -102,15 +103,24 @@ a.main_categories_logo {
 }
 
 a.bible_logo {
-    background-image: url("../images/logo_bible.jpg");
+    background-image: url("../images/logo_bible.png");
+    background-size: 94px 80px;
 }
 
 a.hetc_logo {
-    background-image: url("../images/logo_hetc.jpg");
+    background-image: url("../images/logo_hetc.png");
+    background-size: 112px 73px;
 }
 
 a.cpe_logo {
-    background-image: url("../images/logo_cpe.jpg");
+    background-image: url("../images/logo_cpe.png");
+    background-size: 190px 38px;
+}
+
+@media (max-width: 768px) {
+    a.cpe_logo {
+        height: 50px;
+    }
 }
 
 #options {
