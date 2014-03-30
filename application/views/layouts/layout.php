@@ -54,7 +54,7 @@
                 <div id="main" class="container clear-top">
                     <footer>
                         <hr />
-                        <p>e-Concordance v2.1 — <a href="<?php echo base_url(); ?>index/contact">contact</a></p>
+                        <p>e-Concordance v2.2 — <a href="<?php echo base_url(); ?>index/contact">contact</a></p>
                     </footer>
                 </div>
             </div>
