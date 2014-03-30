@@ -1,8 +1,8 @@
 <div class="row">
     <div class="span7">
-        <div class="main_logo_desktop visible-desktop"></div>
-        <div class="main_logo_tablet visible-tablet"></div>
-        <div class="main_logo_phone visible-phone"></div>
+        <div class="main-logo main-logo-desktop visible-desktop"></div>
+        <div class="main-logo main-logo-tablet visible-tablet"></div>
+        <div class="main-logo main-logo-phone visible-phone"></div>
         <br />
     </div>
     <div class="span5">

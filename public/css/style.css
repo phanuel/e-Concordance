@@ -33,24 +33,28 @@ div.menu_hack {
 }
 
 /* home page */
-div.main_logo_desktop {
+div.main-logo {
+    background-image: url("../images/e-concordance_804x400.jpg");
+}
+
+div.main-logo-desktop {
     height: 234px;
-    background-image: url("../images/e-concordance_470x234.jpg");
+    background-size: 470px 234px;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-div.main_logo_tablet {
+div.main-logo-tablet {
     height: 200px;
-    background-image: url("../images/e-concordance_400x200.jpg");
+    background-size: 400px 200px;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-div.main_logo_phone {
+div.main-logo-phone {
     height: 130px;
     margin-top: 20px;
-    background-image: url("../images/e-concordance_260x130.jpg");
+    background-size: 260px 130px;
     background-repeat: no-repeat;
     background-position: center;
 }
