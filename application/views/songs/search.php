@@ -129,7 +129,7 @@
                             <?php else: ?>
                                 <p>
                                     <span class="label label-warning">Important</span>
-                                    Vérifiez que vos termes de recherche sont correctement orthografiés et lisez attentivement les instructions ci-dessous afin d'éviter toute mauvaise manipulation.
+                                    Vérifiez que vos termes de recherche sont correctement orthographiés et lisez attentivement les instructions ci-dessous afin d'éviter toute mauvaise manipulation.
                                 </p>
                         <?php endif; ?>
                         </div>
