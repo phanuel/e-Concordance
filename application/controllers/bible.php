@@ -42,7 +42,11 @@ class Bible extends CI_Controller {
             $data['chapter'] = $chapter;
             $data['verses'] = $this->bible_verses->getChapter($data['book']->bible_book_id, $chapter);
 
-            $layoutData['title'] = $data['book']->name . " " . $chapter;
+            if ($data['book']->chapters != 1) {
+                $layoutData['title'] = $data['book']->name . " " . $chapter;
+            }else {
+                $layoutData['title'] = $data['book']->name;
+            }
 
             if ($data['book']->name == "Psaumes") {
                 $chapter_text = "Psaume";
