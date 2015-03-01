@@ -6,7 +6,7 @@ function countUrlSegments() {
     var url = document.URL;
     segments = url.split("/");
     
-    if (window.location.hostname == "www.e-concordance.org") {
+    if (window.location.hostname == "www.e-concordance.org" || window.location.hostname == "e-concordance.org") {
         return segments.length + 1;
     }else {
         return segments.length;
