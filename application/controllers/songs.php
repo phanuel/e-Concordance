@@ -39,6 +39,30 @@ class Songs extends CI_Controller {
         $this->load->view('layouts/layout', $layoutData);
     }
     
+    public function index_csv($hymn_book_identifier) {
+        if (ENVIRONMENT == 'development') {
+            //$this->output->enable_profiler(TRUE); // in dev: enabling profiling
+        }else {
+            $this->output->cache(10080); // in prod: enabling caching, with a duration of one week (10080 minutes)
+        }
+        try {
+            $hymn_book = $this->hymn_books->getHymnBook($hymn_book_identifier);
+            $layoutData['title'] = $hymn_book[0]->name;
+
+            $data['hymn_book_identifier'] = $hymn_book_identifier;
+            $data['hymn_book_name'] = $hymn_book[0]->name;
+            $data['letters_index'] = $this->hymn_books->getHymnBookIndexCsv($hymn_book[0]->name, "FR");
+            
+            $this->load->view('songs/index-csv', $data);
+        } catch (Exception $e) {
+            $data['exception'] = $e;
+            $layoutData['title'] = "Erreur";
+            $layoutData['content'] = $this->load->view('songs/index-csv', $data, true);
+
+            $this->load->view('layouts/layout', $layoutData);
+        }
+    }
+    
     public function index_authors_lyrics($hymn_book_identifier, $author_id = null) {
         if (ENVIRONMENT == 'development') {
             $this->output->enable_profiler(TRUE); // in dev: enabling profiling

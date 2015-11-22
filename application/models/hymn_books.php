@@ -20,6 +20,18 @@ class Hymn_books extends CI_Model {
         
         return $result;
     }
+    
+    public function getHymnBookIndexCsv($hymn_book_name, $language) {
+        $alphas = range('a', 'z');
+        $index = Array();
+        
+        foreach ($alphas as $first_letter) {
+            $results = $this->getHymnBookIndex($hymn_book_name, $first_letter, $language);
+            array_push($index, $results);
+        }
+        
+        return $index;
+    }
 
     public function getHymnBookIndex($hymn_book_name, $first_letter, $language) {
         $first_letter = $first_letter."%";
@@ -38,7 +50,7 @@ class Hymn_books extends CI_Model {
 
         $params = Array($hymn_book_name, $language, 0, $first_letter, $first_letter_with_quote);
         $results = $this->db->query($sql, $params)->result();
-        
+
         // keeping only the first line of the verse
         foreach ($results as $result) {
             $pos = strpos($result->text, "\r\n");
