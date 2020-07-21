@@ -251,6 +251,9 @@ table.contact-form tr td:first-child {
     padding-top: 6px;
     vertical-align: top;
 }
+table.contact-form tr:first-child {
+	display: none;
+}
 
 /* news */
 div.news {
