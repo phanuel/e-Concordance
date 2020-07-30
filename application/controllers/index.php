@@ -55,7 +55,7 @@ class Index extends CI_Controller {
         $this->form_validation->set_message('valid_email', '<span class="label label-important">Erreur</span> Le champ "%s" doit contenir une adresse e-mail valide.');
         $this->form_validation->set_message('matches', '<span class="label label-important">Erreur</span> La confirmation du champ "%s" n\'est pas correcte.');
 
-        if($this->form_validation->run() == FALSE) {
+        if($this->form_validation->run() == FALSE || $this->input->post('nickname') != "") { // nickname is a honeypot to avoid spam => needs to be empty
             $data['success'] = false;
         }else {
             $config = Array( 

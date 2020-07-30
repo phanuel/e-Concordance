@@ -26,7 +26,11 @@
 
         <table class='contact-form'>
         <?php
-
+				echo "<tr>
+                        <td>" . form_label('Surnom: ', 'nickname') . "</td>
+                        <td>" . form_input('nickname', set_value('nickname')) . "</td>
+                        </tr>";
+						
                 echo "<tr>
                         <td>" . form_label('Nom: ', 'firstname') . "</td>
                         <td>" . form_input('firstname', set_value('firstname')) . "</td>
